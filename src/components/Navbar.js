@@ -14,7 +14,7 @@ export default function Navbar(props) {
                 <Link className="navbar-brand" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
                     GetYourNews
                 </Link>
-                <button style={props.darkMode === 'light' ? props.colorMode.darkModeBody : {backgroundColor: '#708090'}}
+                <button style={{backgroundColor: '#708090'}}
                     className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
