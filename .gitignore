@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# demo file of API
+# demo file for API
 sample-output.json
