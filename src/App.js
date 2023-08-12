@@ -1,5 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
+import NewsBox from './components/NewsBox';
 import SearchBar from './components/SearchBar';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <>
       <Navbar />
       <SearchBar />
+      <NewsBox />
     </>
   );
 }
