@@ -1,0 +1,4 @@
+/* giving color to placeholder text */
+#placeholder-color::-webkit-input-placeholder{
+    color: #01283b;
+}

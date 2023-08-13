@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 
 /**
  * This componet will contain features such as search bar and toggle mode.
@@ -24,7 +25,7 @@ export default function SearchBar(props) {
 
                 <form className="form-inline">
                     <div className='nav-link'>
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                        <input id="placeholder-color" className="placeholder-red-300 form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style={{borderRadius: '20px', backgroundColor: props.darkMode==='dark'?'#708090':'white', color: props.darkMode==='dark'?'white':'black'}} />
                     </div>
 
                     {/* search icon */}

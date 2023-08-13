@@ -11,14 +11,14 @@ export default function NewsItem(props) {
     return (
         <>
             <Grid container className="container card" style={props.darkMode === 'dark' ? props.colorMode.darkModeBody : props.colorMode.lightMode}>
-                <Grid item>
-                    <img className="card-img-top" src="https://st.depositphotos.com/1026550/2711/i/950/depositphotos_27118113-stock-photo-modern-luxury-car.jpg" alt="Card image cap" />
+                <Grid item lg={12} sm={12} xs={12}>
+                    <img className="card-img-top" src={props.imageUrl ? props.imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbRaxlxQVfs3QBxs7QpGtixpAV47sMBqkMoA&usqp=CAU"} alt="Card image cap" />
                 </Grid>
 
-                <Grid item className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                <Grid item lg={12} sm={12} xs={12} className="card-body">
+                    <h5 className="card-title">{props.title.length > 50 ? props.title.slice(0, 50) + '...' : props.title}</h5>
+                    <p className="card-text">{props.desc.length > 91 ? props.desc.slice(0, 91) + '...' : props.desc}</p>
+                    <a href={props?.newsUrl} className="btn btn-primary" style={{backgroundColor: '#01283b'}}>Read More</a>
                 </Grid>
             </Grid>
         </>
