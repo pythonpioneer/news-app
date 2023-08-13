@@ -16,8 +16,8 @@ export default function NewsItem(props) {
                 </Grid>
 
                 <Grid item lg={12} sm={12} xs={12} className="card-body">
-                    <h5 className="card-title">{props.title.length > 50 ? props.title.slice(0, 50) + '...' : props.title}</h5>
-                    <p className="card-text">{props.desc.length > 91 ? props.desc.slice(0, 91) + '...' : props.desc}</p>
+                    <h5 className="card-title">{props.title?.length > 50 ? props?.title?.slice(0, 50) + '...' : props.title}</h5>
+                    <p className="card-text">{props.desc?.length > 91 ? props?.desc?.slice(0, 91) + '...' : props.desc}</p>
                     <a href={props?.newsUrl} className="btn btn-primary" style={{backgroundColor: '#01283b'}}>Read More</a>
                 </Grid>
             </Grid>

@@ -10,17 +10,19 @@ import NewsItem from './NewsItem';
  */
 export default function (props) {
 
+    // common feature for news, its static
+    const countries = 'in,gb,jp,tw,us';
+    const languages = 'hi,en';
+
     // state variable to show articles
     const [articles, setArticles] = useState([]);
 
         // fetching API using fetch then axios
         const updateApiData = async () => {
-            const url = 'https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146';
+            const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&q=`;
             let data = await fetch(url);
             let parsedData = await data.json();
-
             setArticles(parsedData.results);
-
         }
         
         // fetching API after rendering 
