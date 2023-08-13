@@ -31,21 +31,25 @@ function App() {
     }
   };
 
-  // state variable for the category of the news
-  const [category, setCategory] = useState('top');
+  // state variables
+  const [category, setCategory] = useState('top');  // for the category of the news
+  const [darkMode, setDarkMode] = useState('light');  // to define the color mode
+  const [searchText, setSearchText] = useState('');  // to define the search text
 
   // this method is used to fetch the clicked navabar element
   const getCategory = (event) => {
     setCategory(event.currentTarget.textContent);
   };
 
+  // this method is used to fetch the data from the search box, when clicked on search icon
+  const getSearchText = () => {
+    setSearchText(document.getElementById('placeholder-color').value);  // id of the search box in searchbar component
+  };
+
   // to change the category to top again
   const getHomeCategory = (event) => {
     setCategory('top');
   };
-
-  // state variable to defint the color mode
-  const [darkMode, setDarkMode] = useState('light');
 
   // writing a function to change the color mode when clicked
   const handleColorMode = () => {
@@ -62,12 +66,12 @@ function App() {
   return (
     <>
       <Navbar darkMode={darkMode} colorMode={colorMode} getCategory={getCategory} getHomeCategory={getHomeCategory} />
-      <SearchBar darkMode={darkMode} handleColorMode={handleColorMode} colorMode={colorMode} />
+      <SearchBar darkMode={darkMode} handleColorMode={handleColorMode} colorMode={colorMode} getSearchText={getSearchText}/>
 
       <Routes>
         {/* the key props is sent to reload the page automatically */}
         <Route exact path={"/" + category.includes(',') ? category.split(',')[0] : category.toLowerCase()}
-          element={<NewsBox key={category} darkMode={darkMode} colorMode={colorMode} category={category}/>}
+          element={<NewsBox key={category} darkMode={darkMode} colorMode={colorMode} category={category} searchText={searchText} />}
         />
       </Routes>
     </>
