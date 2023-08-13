@@ -7,6 +7,7 @@ import NewsItem from './NewsItem';
  * @param {string} darkMode - This variable is not used here, only passed to NavItem component.
  * @param {object} colorMode - This object is not used here, only passed to NavItem component.
  * @param {string} category - This string is used to set the news category.
+ * @param {string} searchText - This string contain the search queries.
  * @returns {JSX.Element} - A JSX element shows News.
  */
 export default function (props) {
@@ -18,18 +19,21 @@ export default function (props) {
     // state variable to show articles
     const [articles, setArticles] = useState([]);
 
-        // fetching API using fetch then axios
-        const updateApiData = async () => {
-            const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}`;
-            let data = await fetch(url);
-            let parsedData = await data.json();
-            setArticles(parsedData.results);
-        }
-        
-        // fetching API after rendering 
-        useEffect(() => {
-            updateApiData();
-        }, []);
+    // fetching API using fetch then axios
+    const updateApiData = async () => {
+
+        /* different api keys are here */
+        // const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}`;
+        const url = `https://newsdata.io/api/1/news?apikey=pub_2760854888b87d2e70e610a41bf0490e639ad&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}`;
+        let data = await fetch(url);
+        let parsedData = await data.json();
+        setArticles(parsedData.results);
+    }
+
+    // fetching API after rendering 
+    useEffect(() => {
+        updateApiData();
+    }, []);
 
 
     return (
@@ -40,12 +44,8 @@ export default function (props) {
                 {articles?.map((element) => {
                     return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link}>
                         <NewsItem
-
-                            // to change color mode
                             darkMode={props.darkMode}
                             colorMode={props.colorMode}
-
-                            // related to API
                             title={element.title}
                             desc={element.description}
                             imageUrl={element.image_url}
