@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
 
@@ -25,15 +26,25 @@ export default function (props) {
         /* different api keys are here */
         // const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}`;
         const url = `https://newsdata.io/api/1/news?apikey=pub_2760854888b87d2e70e610a41bf0490e639ad&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}`;
-        let data = await fetch(url);
-        let parsedData = await data.json();
-        setArticles(parsedData.results);
+
+        // fetching the data using axios
+        axios.get(url)
+
+        // after the fetching the .then method will render the data in the app
+        .then((response) => {
+            setArticles(response.data.results);
+        })
+        
+        // this method will catch the error during api fetching
+        .catch(err => { 
+            console.log(err);
+        });
     }
 
     // fetching API after rendering 
     useEffect(() => {
         updateApiData();
-    }, []);
+    }, []);  // the empty array is passed to run the hook single time (to prevent re-rendering)
 
 
     return (
