@@ -6,21 +6,24 @@ import NewsItem from './NewsItem';
  * This componet is used to show the news.
  * @param {string} darkMode - This variable is not used here, only passed to NavItem component.
  * @param {object} colorMode - This object is not used here, only passed to NavItem component.
+ * @param {string} category - This string is used to set the news category.
  * @returns {JSX.Element} - A JSX element shows News.
  */
 export default function (props) {
+
+    // common feature for news, its static
+    const countries = 'in,gb,jp,tw,us';
+    const languages = 'hi,en';
 
     // state variable to show articles
     const [articles, setArticles] = useState([]);
 
         // fetching API using fetch then axios
         const updateApiData = async () => {
-            const url = 'https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146';
+            const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}`;
             let data = await fetch(url);
             let parsedData = await data.json();
-
             setArticles(parsedData.results);
-
         }
         
         // fetching API after rendering 
@@ -31,7 +34,6 @@ export default function (props) {
 
     return (
         <>
-        {console.log(articles)}
             <Grid container spacing={4}>
 
                 {/* traversing in all artilcles */}

@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
  * This componet will contain features such as category for the news.
  * @param {string} darkMode - This variable is used to set color for day and night mode.
  * @param {object} colorMode - This object contain all the style color format for changing the color mode.
+ * @param {function} getCategory - This function is used to fetch the data from the currently clicked navbar element.
+ * @param {function} getHomeCategory - This function is used to set the category to top. 
  * @returns {JSX.Element} - A JSX element shows Navigation bar.
  */
 export default function Navbar(props) {
     return (
         <>
             <nav className="navbar navbar-expand-lg" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
-                <Link className="navbar-brand" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+                <Link onClick={props.getHomeCategory} className="navbar-brand" to="/top" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
                     GetYourNews
                 </Link>
                 <button style={{backgroundColor: '#708090'}}
@@ -30,49 +32,49 @@ export default function Navbar(props) {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item active">
-                            <Link className="nav-link" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
-                                World <span className="sr-only">(current)</span>
+                            <Link onClick={props.getCategory} className="nav-link" to="/world" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+                                World
                             </Link>
                         </li>
                         <li className="nav-item active">
-                            <Link className="nav-link" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+                            <Link onClick={props.getCategory} className="nav-link" to="/business" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
                                 Business
                             </Link>
                         </li>
                         <li className="nav-item active">
-                            <Link className="nav-link" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+                            <Link onClick={props.getCategory} className="nav-link" to="/entertainment" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
                                 Entertainment
                             </Link>
                         </li>
                         <li className="nav-item active">
-                            <Link className="nav-link" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+                            <Link onClick={props.getCategory} className="nav-link" to="/politics" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
                                 Politics
                             </Link>
                         </li>
                         <li className="nav-item active">
-                            <Link className="nav-link" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+                            <Link onClick={props.getCategory} className="nav-link" to="/sports" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
                                 Sports
                             </Link>
                         </li>
 
                         {/* category=food, health */}
                         <li className="nav-item active">
-                            <Link className="nav-link" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
-                                Food
+                            <Link onClick={props.getCategory} className="nav-link" to="/health" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+                                Health<span className="sr-only">,food</span>
                             </Link>
                         </li>
 
                         {/* category=technology, science */}
                         <li className="nav-item active">
-                            <Link className="nav-link" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
-                                Technology
+                            <Link onClick={props.getCategory} className="nav-link" to="/technology" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+                                Technology<span className="sr-only">,science</span>
                             </Link>
                         </li>
 
                         {/* category=environment, tourism */}
                         <li className="nav-item active">
-                            <Link className="nav-link" href="#" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
-                                Environment
+                            <Link onClick={props.getCategory} className="nav-link" to="/environment" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+                                Environment<span className="sr-only">,tourism</span>
                             </Link>
                         </li>
                     </ul>
