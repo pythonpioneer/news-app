@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import NewsBox from './components/NewsBox';
 import SearchBar from './components/SearchBar';
 import { useState } from 'react';
+import { Routes, Route} from 'react-router-dom';
 
 function App() {
 
@@ -28,8 +29,20 @@ function App() {
       backgroundColor: '#cbd4d1',
       color: 'black',
     }
+  };
 
-  }
+  // state variable for the category of the news
+  const [category, setCategory] = useState('top');
+
+  // this method is used to fetch the clicked navabar element
+  const getCategory = (event) => {
+    setCategory(event.currentTarget.textContent);
+  };
+
+  // to change the category to top again
+  const getHomeCategory = (event) => {
+    setCategory('top');
+  };
 
   // state variable to defint the color mode
   const [darkMode, setDarkMode] = useState('light');
@@ -48,9 +61,15 @@ function App() {
 
   return (
     <>
-      <Navbar darkMode={darkMode} colorMode={colorMode} />
-      <SearchBar darkMode={darkMode} handleColorMode={handleColorMode} colorMode={colorMode}/>
-      <NewsBox darkMode={darkMode} colorMode={colorMode} />
+      <Navbar darkMode={darkMode} colorMode={colorMode} getCategory={getCategory} getHomeCategory={getHomeCategory} />
+      <SearchBar darkMode={darkMode} handleColorMode={handleColorMode} colorMode={colorMode} />
+
+      <Routes>
+        {/* the key props is sent to reload the page automatically */}
+        <Route exact path={"/" + category.includes(',') ? category.split(',')[0] : category.toLowerCase()}
+          element={<NewsBox key={category} darkMode={darkMode} colorMode={colorMode} category={category}/>}
+        />
+      </Routes>
     </>
   );
 }
