@@ -12,7 +12,7 @@ export default function NewsItem(props) {
         <>
             <Grid container className="container card" style={props.darkMode === 'dark' ? props.colorMode.darkModeBody : props.colorMode.lightMode}>
                 <Grid item lg={12} sm={12} xs={12}>
-                    <img className="card-img-top" src={props.imageUrl ? props.imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbRaxlxQVfs3QBxs7QpGtixpAV47sMBqkMoA&usqp=CAU"} alt="Card image cap" />
+                    <img className="card-img-top" src={props.imageUrl ? props.imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbRaxlxQVfs3QBxs7QpGtixpAV47sMBqkMoA&usqp=CAU"} style={{height: '250px'}} alt="Card image cap" />
                 </Grid>
 
                 <Grid item lg={12} sm={12} xs={12} className="card-body">
