@@ -18,19 +18,25 @@ export default function (props) {
     // common feature for news, its static
     const countries = 'in,gb,jp,tw,us';
     const languages = 'hi,en';
+    const APIKEYS = [
+        'pub_274779bfb5acff94dbe83253b43a956b05146',
+        'pub_2760854888b87d2e70e610a41bf0490e639ad',
+        'pub_27624e17447ea52db5843430daf5ba59d0324',
+        'pub_276238be6f4fe846341b374724a6b77ec5df4',
+    ];
 
     // state variable 
     const [articles, setArticles] = useState([]);  // to show articles
     const [nextPage, setNextPage] = useState('');  // to show the next page articles
     const [loading, setLoading] = useState(true);  // to render the loading component while fetching data from API
+    const [apiKey, setApiKey] = useState(APIKEYS[2]);  // to set the api key dynamically
 
     // fetching API using fetch then axios
     const updateApiData = async () => {
         props.setProgress(70);
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
-        // const url = `https://newsdata.io/api/1/news?apikey=pub_2760854888b87d2e70e610a41bf0490e639ad&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${page}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
 
         // fetching the data using axios
         axios.get(url)
@@ -53,8 +59,7 @@ export default function (props) {
     const fetchMoreData = async () => {
         
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
-        // const url = `https://newsdata.io/api/1/news?apikey=pub_2760854888b87d2e70e610a41bf0490e639ad&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${page}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
 
         // fetching the data using axios
         axios.get(url)
