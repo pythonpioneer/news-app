@@ -3,7 +3,8 @@ import Navbar from './components/Navbar';
 import NewsBox from './components/NewsBox';
 import SearchBar from './components/SearchBar';
 import { useState } from 'react';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
   const [category, setCategory] = useState('top');  // for the category of the news
   const [darkMode, setDarkMode] = useState('light');  // to define the color mode
   const [searchText, setSearchText] = useState('');  // to define the search text
+  const [progress, setProgress] = useState('5');  // to display the top loading bar
 
   // this method is used to fetch the clicked navabar element
   const getCategory = (event) => {
@@ -65,13 +67,19 @@ function App() {
 
   return (
     <>
+      {/* displaying top loading bar */}
+      <LoadingBar
+        color='#f11946'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <Navbar darkMode={darkMode} colorMode={colorMode} getCategory={getCategory} getHomeCategory={getHomeCategory} />
-      <SearchBar darkMode={darkMode} handleColorMode={handleColorMode} colorMode={colorMode} getSearchText={getSearchText}/>
+      <SearchBar darkMode={darkMode} handleColorMode={handleColorMode} colorMode={colorMode} getSearchText={getSearchText} />
 
       <Routes>
         {/* the key props is sent to reload the page automatically */}
         <Route exact path={"/" + category.includes(',') ? category.split(',')[0].toLowerCase() : category.toLowerCase()}
-          element={<NewsBox key={category + searchText + Math.random()} darkMode={darkMode} colorMode={colorMode} category={category} searchText={searchText} />}
+          element={<NewsBox key={category + searchText} darkMode={darkMode} colorMode={colorMode} category={category} searchText={searchText} />}
         />
       </Routes>
     </>

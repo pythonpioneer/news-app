@@ -87,7 +87,6 @@ export default function (props) {
                 {articles?.map((element) => {
                     return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link}>
                         <NewsItem
-                            key={element.link}
                             darkMode={props.darkMode}
                             colorMode={props.colorMode}
                             title={element.title}
