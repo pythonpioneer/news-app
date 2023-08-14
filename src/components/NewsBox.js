@@ -24,6 +24,7 @@ export default function (props) {
 
     // fetching API using fetch then axios
     const updateApiData = async () => {
+        props.setProgress(20);
 
         /* different api keys are here */
         const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
@@ -36,6 +37,7 @@ export default function (props) {
             .then((response) => {
                 setArticles(response.data.results);
                 setNextPage(response.data.nextPage);
+                props.setProgress(100);
             })
 
             // this method will catch the error during api fetching
@@ -75,6 +77,7 @@ export default function (props) {
     return (
         <>
             <Grid container spacing={4}>
+
                 {/* implementing pagenation */}
                 <InfiniteScroll
                     dataLength={articles?.length}

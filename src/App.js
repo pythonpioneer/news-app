@@ -79,7 +79,7 @@ function App() {
       <Routes>
         {/* the key props is sent to reload the page automatically */}
         <Route exact path={"/" + category.includes(',') ? category.split(',')[0].toLowerCase() : category.toLowerCase()}
-          element={<NewsBox key={category + searchText} darkMode={darkMode} colorMode={colorMode} category={category} searchText={searchText} />}
+          element={<NewsBox key={category + searchText} darkMode={darkMode} colorMode={colorMode} category={category} searchText={searchText} setProgress={setProgress}/>}
         />
       </Routes>
     </>
