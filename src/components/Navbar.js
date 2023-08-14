@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 export default function Navbar(props) {
     return (
         <>
-            <nav className="navbar navbar-expand-lg" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+            <nav className="navbar navbar-expand-lg sticky-top" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar }>
                 <Link onClick={props.getHomeCategory} className="navbar-brand" to="/top" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
                     GetYourNews
                 </Link>
@@ -60,21 +60,21 @@ export default function Navbar(props) {
                         {/* category=food, health */}
                         <li className="nav-item active">
                             <Link onClick={props.getCategory} className="nav-link" to="/health" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
-                                Health<span className="sr-only">,food</span>
+                                Health <span className="sr-only">,food</span>
                             </Link>
                         </li>
 
                         {/* category=technology, science */}
                         <li className="nav-item active">
                             <Link onClick={props.getCategory} className="nav-link" to="/technology" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
-                                Technology<span className="sr-only">,science</span>
+                                Technology <span className="sr-only">,science</span>
                             </Link>
                         </li>
 
                         {/* category=environment, tourism */}
                         <li className="nav-item active">
                             <Link onClick={props.getCategory} className="nav-link" to="/environment" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
-                                Environment<span className="sr-only">,tourism</span>
+                                Environment <span className="sr-only">,tourism</span>
                             </Link>
                         </li>
                     </ul>

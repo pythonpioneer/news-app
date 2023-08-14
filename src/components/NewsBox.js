@@ -52,35 +52,26 @@ export default function (props) {
 
                 // means apikey is valid
                 .then((response) => {
-                    console.log("thens" + idx);
                     error429 = false;
                 })
 
                 // means apikey is not valid
                 .catch(err => {
-                    console.log("catchs" + idx);
                     error429 = true;
                 });
 
             // means the given url is not valid
             if (error429 === true) {
-                console.log("ifs" + idx);
                 idx += 1;
             }
 
             // when the given apikey is working
             else {
-                console.log("elses" + idx);
                 apiStatus = false;
-                console.log("apistatuss " + apiStatus);
                 break;
             }
         }
 
-        
-
-        console.log("update " + APIKEYS[idx])
-        console.log("val" + idx)
         props.setProgress(70);
 
         /* different api keys are here */
@@ -118,34 +109,26 @@ export default function (props) {
 
                 // means apikey is valid
                 .then((reponse) => {
-                    console.log("then" + idx);
                     error429 = false;
                 })
 
                 // means apikey is not valid
                 .catch(err => {
-                    console.log("catch" + idx);
                     error429 = true;
                 });
 
             // means the given url is not valid
             if (error429 === true) {
-                console.log("if" + idx);
                 idx += 1;
             }
 
             // when the given apikey is working
             else {
-                console.log("else" + idx);
                 setApiKey(APIKEYS[idx]);
                 apiStatus = false;
-                console.log("apistatus " + apiStatus);
-                console.log(apiKey);
                 break;
             }
         }
-        console.log("fetch " + APIKEYS[idx])
-
 
         /* different api keys are here */
         const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}pizza&page=${nextPage}`;
