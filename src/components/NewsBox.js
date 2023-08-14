@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useLayoutEffect, useMemo } from 'react';
 import NewsItem from './NewsItem';
 import Loading from './Loading';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -23,6 +23,7 @@ export default function (props) {
         'pub_2760854888b87d2e70e610a41bf0490e639ad',
         'pub_27624e17447ea52db5843430daf5ba59d0324',
         'pub_276238be6f4fe846341b374724a6b77ec5df4',
+        'pub_276496088126ca73d3b3de8cf46aec7fe10f0',
     ];
     let apiStatus = true;
 
@@ -30,40 +31,60 @@ export default function (props) {
     const [articles, setArticles] = useState([]);  // to show articles
     const [nextPage, setNextPage] = useState('');  // to show the next page articles
     const [loading, setLoading] = useState(true);  // to render the loading component while fetching data from API
-    const [apiKey, setApiKey] = useState(APIKEYS[3]);  // to set the api key dynamically
 
-    // check that the api key is working
-    const checkApiKey = (APIKEYS) => {
+    // to set the api key dynamically
+    let apiKey = APIKEYS[0];
+    function setApiKey(key) {
+        apiKey = key;
+    }
+
+    // fetching API using fetch then axios
+    const updateApiData = async (val) => {
+
         let idx = 0;
         let checkUrl;
         let error429 = false;
 
         // traversing to find valid api keys among all
-        while(idx < APIKEYS.length){
+        while (idx < APIKEYS.length) {
             checkUrl = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}`;
-            axios.get(checkUrl).catch(err => {
-                error429 = true;
-            });
-            if(error429 === true) idx++;
-            else {
-                setApiKey(APIKEYS[idx]);
-                apiStatus = false;
-                console.log(apiStatus)
-                break;
-            };
-        }
-    };
+            await axios.get(checkUrl)
 
-    // fetching API using fetch then axios
-    const updateApiData = async () => {
-        if(apiStatus) {
-            checkApiKey(APIKEYS);
-            console.log(apiStatus);
+                // means apikey is valid
+                .then((response) => {
+                    console.log("thens" + idx);
+                    error429 = false;
+                })
+
+                // means apikey is not valid
+                .catch(err => {
+                    console.log("catchs" + idx);
+                    error429 = true;
+                });
+
+            // means the given url is not valid
+            if (error429 === true) {
+                console.log("ifs" + idx);
+                idx += 1;
+            }
+
+            // when the given apikey is working
+            else {
+                console.log("elses" + idx);
+                apiStatus = false;
+                console.log("apistatuss " + apiStatus);
+                break;
+            }
         }
+
+        
+
+        console.log("update " + APIKEYS[idx])
+        console.log("val" + idx)
         props.setProgress(70);
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
 
         // fetching the data using axios
         await axios.get(url)
@@ -86,8 +107,48 @@ export default function (props) {
     // fetch more data from api
     const fetchMoreData = async () => {
 
+        let idx = 0;
+        let checkUrl;
+        let error429 = false;
+
+        // traversing to find valid api keys among all
+        while (idx < APIKEYS.length) {
+            checkUrl = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}`;
+            await axios.get(checkUrl)
+
+                // means apikey is valid
+                .then((reponse) => {
+                    console.log("then" + idx);
+                    error429 = false;
+                })
+
+                // means apikey is not valid
+                .catch(err => {
+                    console.log("catch" + idx);
+                    error429 = true;
+                });
+
+            // means the given url is not valid
+            if (error429 === true) {
+                console.log("if" + idx);
+                idx += 1;
+            }
+
+            // when the given apikey is working
+            else {
+                console.log("else" + idx);
+                setApiKey(APIKEYS[idx]);
+                apiStatus = false;
+                console.log("apistatus " + apiStatus);
+                console.log(apiKey);
+                break;
+            }
+        }
+        console.log("fetch " + APIKEYS[idx])
+
+
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}pizza&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}pizza&page=${nextPage}`;
 
         // fetching the data using axios
         await axios.get(url)
@@ -110,11 +171,10 @@ export default function (props) {
         updateApiData();
     }, []);  // the empty array is passed to run the hook single time (to prevent re-rendering)
 
-
     return (
         <>
             <Grid container spacing={4}>
-
+                
                 {/* implementing pagenation */}
                 <InfiniteScroll
                     dataLength={articles?.length}
