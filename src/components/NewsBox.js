@@ -24,22 +24,49 @@ export default function (props) {
         'pub_27624e17447ea52db5843430daf5ba59d0324',
         'pub_276238be6f4fe846341b374724a6b77ec5df4',
     ];
+    let apiStatus = true;
 
     // state variable 
     const [articles, setArticles] = useState([]);  // to show articles
     const [nextPage, setNextPage] = useState('');  // to show the next page articles
     const [loading, setLoading] = useState(true);  // to render the loading component while fetching data from API
-    const [apiKey, setApiKey] = useState(APIKEYS[2]);  // to set the api key dynamically
+    const [apiKey, setApiKey] = useState(APIKEYS[3]);  // to set the api key dynamically
+
+    // check that the api key is working
+    const checkApiKey = (APIKEYS) => {
+        let idx = 0;
+        let checkUrl;
+        let error429 = false;
+
+        // traversing to find valid api keys among all
+        while(idx < APIKEYS.length){
+            checkUrl = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}`;
+            axios.get(checkUrl).catch(err => {
+                error429 = true;
+            });
+            if(error429 === true) idx++;
+            else {
+                setApiKey(APIKEYS[idx]);
+                apiStatus = false;
+                console.log(apiStatus)
+                break;
+            };
+        }
+    };
 
     // fetching API using fetch then axios
     const updateApiData = async () => {
+        if(apiStatus) {
+            checkApiKey(APIKEYS);
+            console.log(apiStatus);
+        }
         props.setProgress(70);
 
         /* different api keys are here */
         const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
 
         // fetching the data using axios
-        axios.get(url)
+        await axios.get(url)
 
             // after the fetching the .then method will render the data in the app
             .then((response) => {
@@ -52,17 +79,18 @@ export default function (props) {
             // this method will catch the error during api fetching
             .catch(err => {
                 console.log(err);
-            });
+            })
+
     };
 
     // fetch more data from api
     const fetchMoreData = async () => {
-        
+
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${apiKey}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}pizza&page=${nextPage}`;
 
         // fetching the data using axios
-        axios.get(url)
+        await axios.get(url)
 
             // after the fetching the .then method will render the data in the app
             .then((response) => {
@@ -73,8 +101,9 @@ export default function (props) {
             // this method will catch the error during api fetching
             .catch(err => {
                 console.log(err);
-            });
-    };  
+            })
+
+    };
 
     // fetching API after rendering 
     useEffect(() => {
@@ -91,7 +120,7 @@ export default function (props) {
                     dataLength={articles?.length}
                     next={fetchMoreData}
                     hasMore={articles?.length < 100}  // there are alot of articles present, restricting after displaying some articles out of those
-                    // loader={<h2>yes</h2>}
+                // loader={<h2>yes</h2>}
                 ></InfiniteScroll>
 
                 {/* traversing in all artilcles */}
