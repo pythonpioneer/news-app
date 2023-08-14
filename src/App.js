@@ -70,8 +70,8 @@ function App() {
 
       <Routes>
         {/* the key props is sent to reload the page automatically */}
-        <Route exact path={"/" + category.includes(',') ? category.split(',')[0] : category.toLowerCase()}
-          element={<NewsBox key={category + searchText} darkMode={darkMode} colorMode={colorMode} category={category} searchText={searchText} />}
+        <Route exact path={"/" + category.includes(',') ? category.split(',')[0].toLowerCase() : category.toLowerCase()}
+          element={<NewsBox key={category + searchText + Math.random()} darkMode={darkMode} colorMode={colorMode} category={category} searchText={searchText} />}
         />
       </Routes>
     </>
