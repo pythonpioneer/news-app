@@ -80,7 +80,7 @@ export default function (props) {
                     dataLength={articles?.length}
                     next={fetchMoreData}
                     hasMore={articles?.length < 100}  // there are alot of articles present, restricting after displaying some articles out of those
-                    loader={<h2>yes</h2>}
+                    // loader={<h2>yes</h2>}
                 ></InfiniteScroll>
 
                 {/* traversing in all artilcles */}
