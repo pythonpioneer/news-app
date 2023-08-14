@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
+import Loading from './Loading';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 /**
@@ -20,7 +21,8 @@ export default function (props) {
 
     // state variable 
     const [articles, setArticles] = useState([]);  // to show articles
-    const [nextPage, setNextPage] = useState('');
+    const [nextPage, setNextPage] = useState('');  // to show the next page articles
+    const [loading, setLoading] = useState(true);  // to render the loading component while fetching data from API
 
     // fetching API using fetch then axios
     const updateApiData = async () => {
@@ -38,6 +40,7 @@ export default function (props) {
                 setArticles(response.data.results);
                 setNextPage(response.data.nextPage);
                 props.setProgress(100);
+                setLoading(false);
             })
 
             // this method will catch the error during api fetching
@@ -87,7 +90,8 @@ export default function (props) {
                 ></InfiniteScroll>
 
                 {/* traversing in all artilcles */}
-                {articles?.map((element) => {
+                {loading && <Loading />}
+                {!loading && articles?.map((element) => {
                     return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link}>
                         <NewsItem
                             darkMode={props.darkMode}
