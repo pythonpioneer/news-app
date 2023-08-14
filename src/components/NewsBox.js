@@ -24,7 +24,7 @@ export default function (props) {
 
     // fetching API using fetch then axios
     const updateApiData = async () => {
-        props.setProgress(20);
+        props.setProgress(70);
 
         /* different api keys are here */
         const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
