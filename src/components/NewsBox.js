@@ -26,6 +26,7 @@ export default function (props) {
         'pub_276496088126ca73d3b3de8cf46aec7fe10f0',
     ];
     let apiStatus = true;
+    const searchText = props.searchText;
 
     // state variable 
     const [articles, setArticles] = useState([]);  // to show articles
@@ -84,7 +85,7 @@ export default function (props) {
         props.setProgress(70);
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}&country=${countries}&language=${languages}&category=${props.category}&q=${searchText}&page=${nextPage}`;
 
         // fetching the data using axios
         await axios.get(url)
@@ -96,6 +97,7 @@ export default function (props) {
                 props.setProgress(100);
                 setLoading(false);
                 console.log("resx" + response.data.totalResults)
+                console.log("textx" + searchText);
             })
 
             // this method will catch the error during api fetching
@@ -149,7 +151,7 @@ export default function (props) {
 
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}pizza&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[idx]}&country=${countries}&language=${languages}&category=${props.category}&q=${searchText}pizza&page=${nextPage}`;
 
         // fetching the data using axios
         await axios.get(url)
@@ -159,7 +161,7 @@ export default function (props) {
                 setArticles(articles.concat(response.data.results));
                 setNextPage(response.data.nextPage);
                 console.log("res" + response.data.totalResults)
-                console.log("txt" + props.searchText);
+                console.log("txt" + searchText);
 
             })
 
