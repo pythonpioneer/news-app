@@ -95,6 +95,7 @@ export default function (props) {
                 setNextPage(response.data.nextPage);
                 props.setProgress(100);
                 setLoading(false);
+                console.log("resx" + response.data.totalResults)
             })
 
             // this method will catch the error during api fetching
@@ -157,6 +158,9 @@ export default function (props) {
             .then((response) => {
                 setArticles(articles.concat(response.data.results));
                 setNextPage(response.data.nextPage);
+                console.log("res" + response.data.totalResults)
+                console.log("txt" + props.searchText);
+
             })
 
             // this method will catch the error during api fetching
