@@ -38,7 +38,7 @@ export default function NewsBox(props) {
         props.setProgress(70);
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[3]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[2]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
 
         // fetching the data using axios
         axios.get(url)
@@ -61,7 +61,7 @@ export default function NewsBox(props) {
     const fetchMoreData = async () => {
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[3]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[2]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
 
         // fetching the data using axios
         axios.get(url)
@@ -87,9 +87,6 @@ export default function NewsBox(props) {
 
     return (
         <Grid>
-
-            {/* displaying loader on page reload */}
-            {/* {loading && <Spinner />}  */}
 
             {/* implementing pagenation */}
             <InfiniteScroll
