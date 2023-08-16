@@ -36,9 +36,8 @@ export default function (props) {
         props.setProgress(70);
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
-        // const url = `https://newsdata.io/api/1/news?apikey=pub_2760854888b87d2e70e610a41bf0490e639ad&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${page}`;
-
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[1]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+    
         // fetching the data using axios
         axios.get(url)
 
@@ -59,8 +58,7 @@ export default function (props) {
     const fetchMoreData = async () => {
         
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=pub_274779bfb5acff94dbe83253b43a956b05146&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
-        // const url = `https://newsdata.io/api/1/news?apikey=pub_2760854888b87d2e70e610a41bf0490e639ad&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${page}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[1]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
 
         // fetching the data using axios
         axios.get(url)
@@ -99,6 +97,7 @@ export default function (props) {
                 {articles?.map((element) => {
                     return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link}>
                         <NewsItem
+                            key={props.link}
                             darkMode={props.darkMode}
                             colorMode={props.colorMode}
                             title={element.title}
