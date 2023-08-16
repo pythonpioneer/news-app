@@ -13,7 +13,7 @@ import Spinner from './Spinner';
  * @param {string} searchText - This string contain the search queries.
  * @returns {JSX.Element} - A JSX element shows News.
  */
-export default function NewsBox (props) {
+export default function NewsBox(props) {
 
     // common feature for news, its static
     const countries = 'in,gb,jp,tw,us';
@@ -38,8 +38,8 @@ export default function NewsBox (props) {
         props.setProgress(70);
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[4]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
-    
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[3]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+
         // fetching the data using axios
         axios.get(url)
 
@@ -59,9 +59,9 @@ export default function NewsBox (props) {
 
     // fetch more data from api
     const fetchMoreData = async () => {
-        
+
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[4]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[3]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
 
         // fetching the data using axios
         axios.get(url)
@@ -76,7 +76,7 @@ export default function NewsBox (props) {
             .catch(err => {
                 console.log(err);
             });
-    };  
+    };
 
     // fetching API after rendering 
     useEffect(() => {
@@ -86,38 +86,36 @@ export default function NewsBox (props) {
 
 
     return (
-        <>
-            <Grid container spacing={4}>
-            {/* <Grid item lg={12} sm={12} xs={12}>
-                <h1 className='text-center'>Get Your News</h1>
-            </Grid> */}
+        <Grid>
 
-                {/* displaying loader on page reload */}
-                {loading && <Spinner />} 
+            {/* displaying loader on page reload */}
+            {/* {loading && <Spinner />}  */}
 
-                {/* implementing pagenation */}
-                <InfiniteScroll
-                    dataLength={articles?.length}
-                    next={fetchMoreData}
-                    hasMore={articles?.length < 50}  // there are alot of articles present, restricting after displaying some articles out of those
-                    // loader={loading && <Spinner />}
-                ></InfiniteScroll>
+            {/* implementing pagenation */}
+            <InfiniteScroll
+                dataLength={articles?.length}
+                next={fetchMoreData}
+                hasMore={articles?.length < 50}  // there are alot of articles present, restricting after displaying some articles out of those
+                loader={<Spinner />}
+            >
+                <Grid container spacing={4}>
 
-                {/* traversing in all artilcles */}
-                {articles?.map((element) => {
-                    return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link}>
-                        <NewsItem
-                            key={props.link}
-                            darkMode={props.darkMode}
-                            colorMode={props.colorMode}
-                            title={element.title}
-                            desc={element.description}
-                            imageUrl={element.image_url}
-                            newsUrl={element.link} />
-                    </Grid>
-                })}
+                    {/* traversing in all artilcles */}
+                    {articles?.map((element) => {
+                        return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link}>
+                            <NewsItem
+                                key={props.link}
+                                darkMode={props.darkMode}
+                                colorMode={props.colorMode}
+                                title={element.title}
+                                desc={element.description}
+                                imageUrl={element.image_url}
+                                newsUrl={element.link} />
+                        </Grid>
+                    })}
 
-            </Grid>
-        </>
+                </Grid>
+            </InfiniteScroll>
+        </Grid>
     );
 };
