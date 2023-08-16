@@ -36,7 +36,7 @@ export default function (props) {
         props.setProgress(70);
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[1]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[2]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
     
         // fetching the data using axios
         axios.get(url)
@@ -58,7 +58,7 @@ export default function (props) {
     const fetchMoreData = async () => {
         
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[1]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[2]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
 
         // fetching the data using axios
         axios.get(url)
