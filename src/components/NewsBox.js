@@ -93,12 +93,12 @@ export default function NewsBox(props) {
                 dataLength={articles?.length}
                 next={fetchMoreData}
                 hasMore={articles?.length < 50}  // there are alot of articles present, restricting after displaying some articles out of those
-                loader={<Spinner />}
+                loader={!loading && <Spinner />}
             >
                 <Grid container spacing={4}>
 
                     {/* traversing in all artilcles */}
-                    {articles?.map((element) => {
+                    {!loading && articles?.map((element) => {
                         return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link}>
                             <NewsItem
                                 key={props.link}
