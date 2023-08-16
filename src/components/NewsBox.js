@@ -18,6 +18,15 @@ export default function (props) {
     const countries = 'in,gb,jp,tw,us';
     const languages = 'hi,en';
 
+    // multiple api keys are here
+    const APIKEYS = [
+        'pub_274779bfb5acff94dbe83253b43a956b05146',
+        'pub_2760854888b87d2e70e610a41bf0490e639ad',
+        'pub_27624e17447ea52db5843430daf5ba59d0324',
+        'pub_276238be6f4fe846341b374724a6b77ec5df4',
+        'pub_276496088126ca73d3b3de8cf46aec7fe10f0',
+    ];
+
     // state variable 
     const [articles, setArticles] = useState([]);  // to show articles
     const [nextPage, setNextPage] = useState('');
@@ -82,7 +91,7 @@ export default function (props) {
                 <InfiniteScroll
                     dataLength={articles?.length}
                     next={fetchMoreData}
-                    hasMore={articles?.length < 100}  // there are alot of articles present, restricting after displaying some articles out of those
+                    hasMore={articles?.length < 50}  // there are alot of articles present, restricting after displaying some articles out of those
                     // loader={<h2>yes</h2>}
                 ></InfiniteScroll>
 
