@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 export default function Navbar(props) {
     return (
         <>
-            <nav className="navbar navbar-expand-lg" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
+            <nav className="navbar navbar-expand-lg sticky-top" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
                 <Link onClick={props.getHomeCategory} className="navbar-brand" to="/top" style={props.darkMode === 'dark' ? props.colorMode.darkModeNavbar : props.colorMode.lightModeNavbar}>
                     GetYourNews
                 </Link>

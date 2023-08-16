@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Spinner from './Spinner';
 
 /**
  * This componet is used to show the news.
@@ -12,7 +13,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
  * @param {string} searchText - This string contain the search queries.
  * @returns {JSX.Element} - A JSX element shows News.
  */
-export default function (props) {
+export default function NewsBox (props) {
 
     // common feature for news, its static
     const countries = 'in,gb,jp,tw,us';
@@ -29,7 +30,8 @@ export default function (props) {
 
     // state variable 
     const [articles, setArticles] = useState([]);  // to show articles
-    const [nextPage, setNextPage] = useState('');
+    const [nextPage, setNextPage] = useState('');  // to change the page
+    const [loading, setLoading] = useState(true);  // to display spinner
 
     // fetching API using fetch then axios
     const updateApiData = async () => {
@@ -45,6 +47,7 @@ export default function (props) {
             .then((response) => {
                 setArticles(response.data.results);
                 setNextPage(response.data.nextPage);
+                setLoading(false);
                 props.setProgress(100);
             })
 
@@ -78,19 +81,26 @@ export default function (props) {
     // fetching API after rendering 
     useEffect(() => {
         updateApiData();
+        // eslint-disable-next-line
     }, []);  // the empty array is passed to run the hook single time (to prevent re-rendering)
 
 
     return (
         <>
             <Grid container spacing={4}>
+            {/* <Grid item lg={12} sm={12} xs={12}>
+                <h1 className='text-center'>Get Your News</h1>
+            </Grid> */}
+
+                {/* displaying loader on page reload */}
+                {loading && <Spinner />} 
 
                 {/* implementing pagenation */}
                 <InfiniteScroll
                     dataLength={articles?.length}
                     next={fetchMoreData}
                     hasMore={articles?.length < 50}  // there are alot of articles present, restricting after displaying some articles out of those
-                    // loader={<h2>yes</h2>}
+                    // loader={loading && <Spinner />}
                 ></InfiniteScroll>
 
                 {/* traversing in all artilcles */}
