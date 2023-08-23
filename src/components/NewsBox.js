@@ -38,7 +38,8 @@ export default function NewsBox(props) {
         props.setProgress(70);
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[1]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[3]}&country=${countries}&language=${languages}&category=${props.category}&${props.searchText===''?'':"q="+props.searchText}`;
+        // const url = `https://newsdata.io/api/1/news?apikey=pub_2760854888b87d2e70e610a41bf0490e639ad&country=in,gb,jp,tw,us&language=hi,en&category=sports&q=${props.searchText}`;
 
         // fetching the data using axios
         axios.get(url)
@@ -61,7 +62,7 @@ export default function NewsBox(props) {
     const fetchMoreData = async () => {
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[1]}&country=${countries}&language=${languages}&category=${props.category}&q=${props.searchText}&page=${nextPage}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[3]}&country=${countries}&language=${languages}&category=${props.category}&${props.searchText===''?'':"q="+props.searchText}&${nextPage===null?'':"page="+nextPage.toString()}`;
 
         // fetching the data using axios
         axios.get(url)
@@ -98,10 +99,10 @@ export default function NewsBox(props) {
                 <Grid container spacing={4}>
 
                     {/* traversing in all artilcles */}
-                    {!loading && articles?.map((element) => {
+                    {!loading && articles?.map((element, index) => {
                         return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link}>
                             <NewsItem
-                                key={props.link}
+                                key={index}
                                 darkMode={props.darkMode}
                                 colorMode={props.colorMode}
                                 title={element.title}
