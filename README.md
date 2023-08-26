@@ -1,6 +1,6 @@
 # News App
 
-This news app shows you the news of different categories, and you can also search your news in any news category and the app will adjust automatically when you change your news category.
+This news app shows you the news articles of different categories, and you can also search your news article in any news category. The app will adjust automatically when you change your news category w.r.t. the search.
 
 ## Getting Started
 
@@ -23,5 +23,36 @@ This news app shows you the news of different categories, and you can also searc
 
 - It will open your browser(http://localhost:3000)
 
+## Note
+
+React Reduction is built on top of [Create React App](https://github.com/facebook/create-react-app), which means all features that create-react-app supports are available.
+
+## Implementation
+
+### Components used (open source)
+
+- react-router-dom
+  
+  React-router-dom component is generally used when we use page routing in our app.
+  
+  - **To install:**
+  
+        npm install react-router-dom@6
+
+  - **Steps to implement**
+  
+  
+- react-top-loading-bar
+- @mui/material
+- react-infinite-scroll-component
+- axios
+
+### Components used in the app (specific)
+
+- Navbar
+- NewsBox
+- NewsItem
+- SearchBar
+- Spinner
 
 
