@@ -1,6 +1,6 @@
 # News App
 
-This news app shows you the news of different categories, and you can also search your news in any news category and the app will automatically adjust when you change your news category.
+This news app shows you the news of different categories, and you can also search your news in any news category and the app will adjust automatically when you change your news category.
 
 ## Getting Started
 
