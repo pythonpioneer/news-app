@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import NewsItem from './NewsItem';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Spinner from './Spinner';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 /**
  * This componet is used to show the news.
@@ -38,7 +40,7 @@ export default function NewsBox(props) {
         props.setProgress(70);
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[3]}&country=${countries}&language=${languages}&category=${props.category}&${props.searchText===''?'':"q="+props.searchText}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[0]}&country=${countries}&language=${languages}&category=${props.category}&${props.searchText === '' ? '' : "q=" + props.searchText}`;
         // const url = `https://newsdata.io/api/1/news?apikey=pub_2760854888b87d2e70e610a41bf0490e639ad&country=in,gb,jp,tw,us&language=hi,en&category=sports&q=${props.searchText}`;
 
         // fetching the data using axios
@@ -62,7 +64,7 @@ export default function NewsBox(props) {
     const fetchMoreData = async () => {
 
         /* different api keys are here */
-        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[3]}&country=${countries}&language=${languages}&category=${props.category}&${props.searchText===''?'':"q="+props.searchText}&${nextPage===null?'':"page="+nextPage.toString()}`;
+        const url = `https://newsdata.io/api/1/news?apikey=${APIKEYS[0]}&country=${countries}&language=${languages}&category=${props.category}&${props.searchText === '' ? '' : "q=" + props.searchText}&${nextPage === null ? '' : "page=" + nextPage.toString()}`;
 
         // fetching the data using axios
         axios.get(url)
@@ -85,9 +87,26 @@ export default function NewsBox(props) {
         // eslint-disable-next-line
     }, []);  // the empty array is passed to run the hook single time (to prevent re-rendering)
 
-
     return (
         <Grid>
+
+            {/* displaying loading as skelton */}
+            {loading && <Grid container>
+                {Array(7).fill(null).map((ele, index) => {
+                    return (
+                        <Grid item key={index + Math.random} lg={4} sm={6} xs={12}>
+                            <Grid item lg={12} sm={12} xs={12} className="container">
+                                <Skeleton className="card-img-top" style={{ height: '250px' }} alt="Card image cap" />
+                            </Grid>
+
+                            <Grid item lg={12} sm={12} xs={12} className="card-body">
+                                <Skeleton count={3} className="card-title" />
+                            </Grid>
+                        </Grid>
+                    )
+                })}
+            </Grid>}
+
 
             {/* implementing pagenation */}
             <InfiniteScroll
@@ -100,9 +119,9 @@ export default function NewsBox(props) {
 
                     {/* traversing in all artilcles */}
                     {!loading && articles?.map((element, index) => {
-                        return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link}>
+                        return <Grid item lg={4} xs={12} sm={6} md={4} key={element.link + index + Math.random.toString}>
                             <NewsItem
-                                key={index}
+                                key={index + Math.random}
                                 darkMode={props.darkMode}
                                 colorMode={props.colorMode}
                                 title={element.title}
@@ -111,7 +130,6 @@ export default function NewsBox(props) {
                                 newsUrl={element.link} />
                         </Grid>
                     })}
-
                 </Grid>
             </InfiniteScroll>
         </Grid>

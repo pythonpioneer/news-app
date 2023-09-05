@@ -81,6 +81,9 @@ function App() {
         <Route exact path={"/" + category.includes(',') ? category.split(',')[0].toLowerCase() : category.toLowerCase()}
           element={<NewsBox key={category + searchText + Math.random.toString} darkMode={darkMode} colorMode={colorMode} category={category} searchText={searchText} setProgress={setProgress}/>}
         />
+        <Route exact path={"/"}
+          element={<NewsBox key={'/home' + searchText + Math.random.toString} darkMode={darkMode} colorMode={colorMode} category={category} searchText={searchText} setProgress={setProgress}/>}
+        />
       </Routes>
     </>
   );
