@@ -50,8 +50,14 @@ The app is built on top of [Create React App](https://github.com/facebook/create
 - react-infinite-scroll-component
 
     The react-infinite-scroll-component is to implement pagination to display multiple pages on scrolling.
+  
 - react-loading-skeleton
+
+    The react-loading-skeleton is to display the skeleton loading bar unless the news articles are fetched from the API.
+  
 - axios
+
+    The axios is to fetch the data from the API.
 
 ### Components used in the app (specific)
 
