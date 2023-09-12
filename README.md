@@ -32,7 +32,7 @@ The app is built on top of [Create React App](https://github.com/facebook/create
 ### Components used (open source)
 
 - react-router-dom
-  
+
     The react-router-dom component is generally used to implement page routing. We are using a navigation bar to traverse routes.
   
 - react-top-loading-bar
@@ -41,10 +41,15 @@ The app is built on top of [Create React App](https://github.com/facebook/create
 
 - bootstrap
 
-    Bootstrap is used to improve the user interface
+    Bootstrap is used to improve the user interface and implement the app quickly.
       
 - @mui/material
+
+    The material-ui is to make the website more beautiful, responsive, and easier to implement.
+  
 - react-infinite-scroll-component
+
+    The react-infinite-scroll-component is to implement pagination to display multiple pages on scrolling.
 - react-loading-skeleton
 - axios
 
