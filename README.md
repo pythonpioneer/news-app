@@ -25,7 +25,7 @@ This news app shows you the news articles of different categories, and you can a
 
 ## Note
 
-React Reduction is built on top of [Create React App](https://github.com/facebook/create-react-app), which means all features that create-react-app supports are available.
+The app is built on top of [Create React App](https://github.com/facebook/create-react-app), which means all features that create-react-app supports are available.
 
 ## Implementation
 
@@ -33,18 +33,19 @@ React Reduction is built on top of [Create React App](https://github.com/faceboo
 
 - react-router-dom
   
-  React-router-dom component is generally used when we use page routing in our app.
-  
-  - **To install:**
-  
-        npm install react-router-dom@6
-
-  - **Steps to implement**
-  
+    The react-router-dom component is generally used to implement page routing. We are using a navigation bar to traverse routes.
   
 - react-top-loading-bar
+
+    The react-top-loading-bar component is used to display the progress of loading news articles.
+
+- bootstrap
+
+    Bootstrap is used to improve the user interface
+      
 - @mui/material
 - react-infinite-scroll-component
+- react-loading-skeleton
 - axios
 
 ### Components used in the app (specific)
