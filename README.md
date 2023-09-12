@@ -66,9 +66,27 @@ The app fetches the data from an external API. To understand the app, read the A
 ### Components used in the app (specific)
 
 - Navbar
+
+    Routing implemented in Navbar.js
+  
 - NewsBox
+
+    API, pagination, and skeleton implemented in Newsbox.js
+  
 - NewsItem
+
+    Displaying news articles in NewsItem.js
+  
 - SearchBar
+
+    Search functionality implemented in SearchBar.js
+  
 - Spinner
+
+    Displaying a spinner in place of a skeleton on loading more articles because we don't want to load the whole page without loading the actual articles.
+
+- App.js
+
+    The top loading bar and light and dark themes are implemented here.
 
 
