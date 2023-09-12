@@ -31,7 +31,7 @@ The app is built on top of [Create React App](https://github.com/facebook/create
 
 ### News API
 
-The app fetch the data from an external API. To understand the working of the app, you can read the API doc from [here](https://newsdata.io/documentation/#latest-news).
+The app fetches the data from an external API. To understand the app, read the API doc from [here](https://newsdata.io/documentation/#latest-news).
 
 ### Components used (open source)
 
