@@ -1,6 +1,6 @@
 # News App
 
-This news app shows you the news articles of different categories, and you can also search your news article in any news category. The app will adjust automatically when you change your news category w.r.t. the search.
+This news app shows you the news articles of different categories, and you can also search your news article in any news category. The app will adjust automatically when you change your news category w.r.t. the search. The news articles are taken from the open-source news API.
 
 ## Getting Started
 
@@ -28,6 +28,10 @@ This news app shows you the news articles of different categories, and you can a
 The app is built on top of [Create React App](https://github.com/facebook/create-react-app), which means all features that create-react-app supports are available.
 
 ## Implementation
+
+### News API
+
+The app fetch the data from an external API. To understand the working of the app, you can read the API doc from [here](https://newsdata.io/documentation/#latest-news).
 
 ### Components used (open source)
 
