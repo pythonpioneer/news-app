@@ -89,6 +89,6 @@ The app fetches the data from an external API. To understand the app, read the A
 
     The top loading bar and light and dark themes are implemented here.
 
-## To make contribution
+## To Contribute
 
-  To contribute, go to the [contributing.md file](https://github.com/pythonpioneer/news-app/blob/master/contributing.md). I will appreciate your efforts.
+To contribute, go to the [contributing.md file](https://github.com/pythonpioneer/pythonpioneer/blob/main/guidelines/CONTRIBUTING.md). I will appreciate your efforts.
