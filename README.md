@@ -2,6 +2,10 @@
 
 This news app shows you the news articles of different categories, and you can also search your news article in any news category. The app will adjust automatically when you change your news category w.r.t. the search. The news articles are taken from the open-source news API.
 
+## License
+
+Before you start contributing to this project, please review the [LICENSE](https://github.com/pythonpioneer/news-app/blob/master/LICENSE) file to understand the licensing terms. By contributing to this project, you agree to abide by its terms.
+
 ## Getting Started
 
 - Clone the repo
